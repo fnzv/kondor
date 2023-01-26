@@ -4,7 +4,7 @@
 
 Kondor is a simple Frigate NVR Telegram notification tool written in Golang
 
-The goal of this script is to notify you on a specific Telegram chat or group as soon as Frigate event has been detected by your CCTV cameras
+The goal of this script is to notify you on a specific Telegram chat or group as soon as a Frigate event is detected by your CCTV cameras
 
 What is Frigate?
 
