@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: kondor
+spec:
+  schedule: "* * * * *"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: kondor
+            image: fnzv/kondor
+            env:
+            - name: MYSQL_CONN
+              value: "frigate_db_user:pass@tcp(mysql_host)/frigate_notifications?charset=utf8"
+            - name: TGBOT_CHATID
+              value: "123456789"
+            - name: TGBOT_TOKEN
+              value: "123456789:aaaabbbbccccdddd"
+            - name: FRIGATE_URL
+              value: "http://myfrigate-ingress.lan"
+            imagePullPolicy: IfNotPresent
+            command:
+            - ./kondor
+          restartPolicy: OnFailure
+
